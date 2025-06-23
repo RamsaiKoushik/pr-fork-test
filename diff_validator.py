@@ -172,9 +172,9 @@ if __name__ == "__main__":
         sys.exit(1)
 
     diff_data = get_pull_request_diff()
-    # print("\n--- RAW DIFF CONTENT ---")
-    # print(diff_data)
-    # print("----------------------\n")
+    print("\n--- RAW DIFF CONTENT ---")
+    print(diff_data)
+    print("----------------------\n")
 
     if validate_diff(diff_data):
         print("Diff validation successful!")
