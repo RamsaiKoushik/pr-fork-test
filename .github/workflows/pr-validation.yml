@@ -1,0 +1,38 @@
+name: Pull Request Arista Diff Validator
+
+on:
+  pull_request:
+    branches:
+      - main # Or 'master', depending on your default branch name
+
+jobs:
+  validate-arista-diff:
+    runs-on: ubuntu-latest
+    permissions:
+      # Grant read permission for pull request information to fetch diff
+      pull-requests: read
+      # Grant read permission to checkout the repository's code (including the validation script)
+      contents: read
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.x' # Use any stable Python 3 version, e.g., '3.9', '3.10', '3.11'
+
+      - name: Install dependencies (if any)
+        # For this specific script, no external Python packages are strictly needed
+        # beyond what's usually available. However, 'pip install --upgrade pip'
+        # is good practice to ensure pip is up-to-date.
+        run: |
+          python -m pip install --upgrade pip
+
+      - name: Run Arista Diff Validator Script
+        run: python diff_validator.py
+        env:
+          # GITHUB_TOKEN is a special token automatically provided by GitHub Actions
+          # It has permissions based on the 'permissions' block above.
+          # The Python script uses this token to authenticate and fetch the PR diff.
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
