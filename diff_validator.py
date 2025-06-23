@@ -180,5 +180,5 @@ if __name__ == "__main__":
         print("Diff validation successful!")
         sys.exit(0)
     else:
-        print("Diff validation failed!", file=sys.stderr)
+        print("Diff validation failed due to the above mentioned reasons!", file=sys.stderr)
         sys.exit(1)
