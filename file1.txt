@@ -1,2 +1,2 @@
-this is a test file to validate pull requests from various people.
-adding a comment from the original repo. 
+this is a test file to validate diffs in Pull Requests from various orgs. 
+adding a new line from the resolved commit. 
